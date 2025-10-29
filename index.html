@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шахматы - Игра с ботом</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>♟️ Шахматы</h1>
+            <div class="info-panel">
+                <div class="status-message" id="statusMessage">Ваш ход - белые</div>
+                <div class="captured-pieces">
+                    <div class="captured-white" id="capturedWhite"></div>
+                    <div class="captured-black" id="capturedBlack"></div>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <div class="game-board">
+                <div class="board" id="chessBoard"></div>
+            </div>
+            
+            <aside class="controls">
+                <button class="btn btn-primary" id="newGameBtn">Новая игра</button>
+                <button class="btn btn-secondary" id="undoBtn">Отменить ход</button>
+                <div class="difficulty-selector">
+                    <label for="difficulty">Сложность бота:</label>
+                    <select id="difficulty">
+                        <option value="1">Легкий</option>
+                        <option value="2" selected>Средний</option>
+                        <option value="3">Сложный</option>
+                    </select>
+                </div>
+                <div class="game-info">
+                    <h3>Правила</h3>
+                    <ul>
+                        <li>Вы играете белыми</li>
+                        <li>Бот играет черными</li>
+                        <li>Кликните на фигуру, затем на клетку для хода</li>
+                        <li>Зеленые круги показывают возможные ходы</li>
+                    </ul>
+                </div>
+                <div class="move-history">
+                    <h3>История ходов</h3>
+                    <div id="moveList" class="move-list"></div>
+                </div>
+            </aside>
+        </main>
+    </div>
+    
+    <div class="modal" id="gameOverModal">
+        <div class="modal-content">
+            <h2 id="gameOverTitle"></h2>
+            <p id="gameOverMessage"></p>
+            <button class="btn btn-primary" id="playAgainBtn">Играть снова</button>
+        </div>
+    </div>
+    
+    <script src="chess.js"></script>
+</body>
+</html>
