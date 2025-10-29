@@ -1,25 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-def main_menu_keyboard():
-    """Главное меню"""
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🏰 Королевство", callback_data="kingdom")],
-        [
-            InlineKeyboardButton(text="👤 Профиль", callback_data="profile"),
-            InlineKeyboardButton(text="🎒 Инвентарь", callback_data="inventory")
-        ],
-        [
-            InlineKeyboardButton(text="🗺️ Путешествия", callback_data="travel"),
-            InlineKeyboardButton(text="⚔️ Квесты", callback_data="quests")
-        ],
-        [
-            InlineKeyboardButton(text="🏪 Магазин", callback_data="shop"),
-            InlineKeyboardButton(text="⚒️ Крафт", callback_data="craft")
-        ],
-        [InlineKeyboardButton(text="🎲 Зал Удачи", callback_data="casino_main")]
-    ])
-    return keyboard
-
 def kingdom_menu_keyboard():
     """Меню королевства"""
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -31,8 +11,7 @@ def kingdom_menu_keyboard():
         [InlineKeyboardButton(text="🔧 Кузница", callback_data="kingdom_forge")],
         [InlineKeyboardButton(text="📚 Библиотека", callback_data="kingdom_library")],
         [InlineKeyboardButton(text="💱 Обменная лавка", callback_data="exchange")],
-        [InlineKeyboardButton(text="🎲 Зал Удачи", callback_data="casino_main")],
-        [InlineKeyboardButton(text="⬅️ Назад в главное меню", callback_data="main_menu")]
+        [InlineKeyboardButton(text="🎲 Зал Удачи", callback_data="casino_main")]
     ])
     return keyboard
 

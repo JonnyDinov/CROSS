@@ -4,7 +4,7 @@ from sqlalchemy import select
 
 from medieval_bot.database.models import User
 from medieval_bot.database.engine import async_session_maker
-from medieval_bot.keyboards.inline import kingdom_menu_keyboard, main_menu_keyboard
+from medieval_bot.keyboards.inline import kingdom_menu_keyboard
 from medieval_bot.utils.text_generator import get_kingdom_description
 
 router = Router()
@@ -166,15 +166,4 @@ async def kingdom_library(callback: CallbackQuery):
 <i>Система обучения и навыков будет добавлена позже.</i>"""
     
     await callback.message.edit_text(text, reply_markup=kingdom_menu_keyboard(), parse_mode="HTML")
-    await callback.answer()
-
-@router.callback_query(F.data == "main_menu")
-async def back_to_main(callback: CallbackQuery):
-    """Возврат в главное меню"""
-    text = """🏰 <b>Главное меню</b>
-━━━━━━━━━━━━━━━━━━━━
-
-Выбери действие:"""
-    
-    await callback.message.edit_text(text, reply_markup=main_menu_keyboard(), parse_mode="HTML")
     await callback.answer()

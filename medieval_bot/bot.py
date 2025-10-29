@@ -7,6 +7,7 @@ from medieval_bot.config import config
 from medieval_bot.database.engine import init_db
 from medieval_bot.handlers import (
     registration,
+    menu,
     profile,
     kingdoms,
     travel,
@@ -33,6 +34,7 @@ async def main():
     dp = Dispatcher(storage=storage)
     
     dp.include_router(registration.router)
+    dp.include_router(menu.router)
     dp.include_router(profile.router)
     dp.include_router(kingdoms.router)
     dp.include_router(travel.router)

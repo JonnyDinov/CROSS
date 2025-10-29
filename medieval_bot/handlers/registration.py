@@ -9,11 +9,18 @@ from medieval_bot.database.models import User, Stats, CasinoStats
 from medieval_bot.database.engine import async_session_maker
 from medieval_bot.keyboards.inline import (
     race_selection_keyboard,
-    class_selection_keyboard,
-    main_menu_keyboard
+    class_selection_keyboard
 )
+from medieval_bot.keyboards.reply import main_menu_keyboard
 from medieval_bot.utils.text_generator import get_random_message
 from medieval_bot.config import config
+from medieval_bot.constants import (
+    RACE_TO_KINGDOM,
+    RACE_BONUSES,
+    CLASS_BONUSES,
+    BASE_STATS,
+    RACE_DESCRIPTIONS
+)
 
 router = Router()
 
@@ -21,27 +28,6 @@ class RegistrationStates(StatesGroup):
     waiting_for_name = State()
     selecting_race = State()
     selecting_class = State()
-
-RACE_TO_KINGDOM = {
-    'Люди': 'Валхейм',
-    'Эльфы': 'Сильвания',
-    'Дварфы': 'Казад-Дум',
-    'Орки': 'Кхан-Гор'
-}
-
-RACE_BONUSES = {
-    'Люди': {'strength': 0, 'agility': 0, 'intelligence': 0, 'endurance': 0},
-    'Эльфы': {'strength': 0, 'agility': 2, 'intelligence': 1, 'endurance': -1},
-    'Дварфы': {'strength': 2, 'agility': -1, 'intelligence': 0, 'endurance': 2},
-    'Орки': {'strength': 3, 'agility': 0, 'intelligence': -1, 'endurance': 1}
-}
-
-CLASS_BONUSES = {
-    'Воин': {'strength': 3, 'agility': 1, 'intelligence': 0, 'endurance': 2},
-    'Маг': {'strength': 0, 'agility': 1, 'intelligence': 4, 'endurance': 0},
-    'Лучник': {'strength': 1, 'agility': 4, 'intelligence': 1, 'endurance': 0},
-    'Жрец': {'strength': 0, 'agility': 0, 'intelligence': 3, 'endurance': 2}
-}
 
 @router.message(CommandStart())
 async def cmd_start(message: Message, state: FSMContext):
@@ -155,17 +141,9 @@ async def process_class_selection(callback: CallbackQuery, state: FSMContext):
     race_bonus = RACE_BONUSES[race]
     class_bonus = CLASS_BONUSES[character_class]
     
-    base_stats = {
-        'strength': 10,
-        'agility': 10,
-        'intelligence': 10,
-        'endurance': 10,
-        'luck': 10
-    }
-    
     final_stats = {}
-    for stat in base_stats:
-        final_stats[stat] = base_stats[stat] + race_bonus.get(stat, 0) + class_bonus.get(stat, 0)
+    for stat in BASE_STATS:
+        final_stats[stat] = BASE_STATS[stat] + race_bonus.get(stat, 0) + class_bonus.get(stat, 0)
     
     async with async_session_maker() as session:
         new_user = User(
