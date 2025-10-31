@@ -1,0 +1,10 @@
+tone: formal
+vocabulary: professional
+length: verbose
+forbidden_words:
+  - слэнг
+  - разговорное
+  - жаргон
+age_target: adult
+context: business_communication
+formality: high

@@ -1,0 +1,53 @@
+Screen {
+    background: #0e0e17;
+}
+
+#header {
+    background: linear-gradient(90deg, #1f1f2e, #2b1845);
+    color: #e8e8ff;
+}
+
+#sidebar {
+    width: 32;
+    background: rgba(40, 15, 60, 0.8);
+    color: #c5c6ff;
+    padding: 1;
+    border: tall #3a225c;
+}
+
+Button {
+    background: rgba(180, 70, 255, 0.2);
+    border: round #6d3df4;
+    color: #e4e1ff;
+}
+
+Button:hover {
+    background: rgba(180, 70, 255, 0.35);
+}
+
+Input, TextArea {
+    background: rgba(22, 22, 35, 0.8);
+    border: tall #422a73;
+    color: #f5f5ff;
+}
+
+#source-text, #result-area, #quest-synopsis, #quest-output,
+#rp-dialogue, #rp-message, #style-description, #style-rules,
+#character-traits, #character-goals, #rp-setting, #rp-memory,
+#rp-goals, #history-area {
+    height: 12;
+}
+
+#result-area, #quest-output, #rp-dialogue, #history-area {
+    height: 16;
+}
+
+#content-panel {
+    background: rgba(18, 18, 28, 0.85);
+    border: round #311d4f;
+    padding: 1;
+}
+
+TabbedContent TabPane {
+    background: rgba(18, 18, 28, 0.9);
+}
