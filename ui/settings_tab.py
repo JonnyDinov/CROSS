@@ -80,6 +80,17 @@ class SettingsTab(QWidget):
             else:
                 if current_model:
                     self.model_combo.addItem(current_model)
+                else:
+                    self.model_combo.addItem("llama2")
+        except RuntimeError as exc:
+            QMessageBox.critical(
+                self,
+                "Ошибка подключения",
+                f"{exc}\n\nПроверьте:\n"
+                "1. Установлена ли Ollama (https://ollama.ai)\n"
+                "2. Запущена ли Ollama (ollama serve)\n"
+                "3. Правильность URL в поле выше",
+            )
         except Exception as exc:
             QMessageBox.warning(
                 self,
