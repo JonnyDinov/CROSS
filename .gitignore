@@ -1,0 +1,29 @@
+# Build artefacts
+bin/
+aihelper
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+
+# Go build cache
+*.out
+*.cover
+cover/
+
+# IDE/editor configs
+.vscode/
+.idea/
+*.iml
+
+# Logs and temp files
+*.log
+*.tmp
+.DS_Store
+
+# SQLite databases
+*.db
+
+# Dependencies
+vendor/
