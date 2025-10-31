@@ -1,0 +1,17 @@
+[project]
+name = "ai-helper"
+version = "0.1.0"
+description = "Offline AI-powered text editor with roleplay and writing functions"
+requires-python = ">=3.10"
+dependencies = [
+    "textual>=0.47.0",
+    "httpx>=0.26.0",
+    "pynput>=1.7.6",
+]
+
+[project.scripts]
+ai-helper = "ai_helper.main:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
