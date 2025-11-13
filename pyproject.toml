@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=65.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "windows-ai-agent"
+version = "0.1.0"
+description = "Windows AI Agent with GUI, CLI, and system automation"
+authors = [{ name = "AI Developer" }]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "PySide6>=6.6.0",
+    "keyboard>=0.13.5",
+    "pyperclip>=1.8.2",
+    "psutil>=5.9.6",
+    "requests>=2.31.0",
+    "Pillow>=10.1.0",
+    "screeninfo>=0.8.1",
+    "rich>=13.7.0",
+    "prompt-toolkit>=3.0.43",
+    "click>=8.1.7",
+    "pystray>=0.19.5",
+    "plyer>=2.1.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.1"
+]
+
+[project.optional-dependencies]
+windows = ["pywin32>=306"]
+
+[project.scripts]
+agent-cli = "agent.cli.main:app"
+agent-gui = "agent.gui.main:run"
+agent-service = "agent.services.agent_service:run_service"
+
+[tool.setuptools.packages.find]
+where = ["agent"]
