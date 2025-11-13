@@ -19,12 +19,11 @@ python --version
 
 Download Ollama from https://ollama.ai and install.
 
-Start Ollama service and pull required models:
+Start Ollama service and pull required model:
 
 ```bash
 ollama serve
-ollama pull llama3.2:latest
-ollama pull llava:latest
+ollama pull gpt-oss:120b-cloud
 ```
 
 ## Step 3: Clone/Download Repository
@@ -53,6 +52,11 @@ pip install pywin32
 ```
 
 ## Step 6: Run the Application
+
+### Quick Menu (Windows)
+```
+run.bat
+```
 
 ### GUI Mode
 ```bash

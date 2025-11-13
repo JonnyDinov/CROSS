@@ -128,6 +128,7 @@ def info(model: Optional[str]):
     console.print(f"[bold]Config Location:[/bold] {CONFIG_FILE}")
     console.print(f"[bold]Logs Location:[/bold] {LOGS_DIR}")
     console.print(f"[bold]Ollama URL:[/bold] {config.get('ollama.base_url')}")
+    console.print(f"[bold]Configured Model:[/bold] {config.get('ollama.model')}")
     
     if ollama_client.is_available():
         console.print("[bold green]Ollama Status:[/bold green] Available ✓")

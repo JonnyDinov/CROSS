@@ -48,62 +48,18 @@ class OllamaClient:
         stream: bool = False
     ) -> str | Generator[str, None, None]:
         model = model or self.model
-        
-        payload = {
-            "model": model,
-            "prompt": prompt,
-            "stream": stream,
-            "options": {
-                "temperature": temperature,
-            }
-        }
-        
+
+        messages: List[Dict[str, str]] = []
         if system:
-            payload["system"] = system
+            messages.append({"role": "system", "content": system})
+        messages.append({"role": "user", "content": prompt})
 
-        try:
-            response = requests.post(
-                f"{self.base_url}/api/generate",
-                json=payload,
-                timeout=self.timeout if not stream else None,
-                stream=stream
-            )
-            
-            if response.status_code != 200:
-                error_msg = f"Ollama API error: {response.status_code}"
-                self.logger.error(error_msg)
-                return error_msg if not stream else iter([error_msg])
-
-            if stream:
-                return self._stream_response(response)
-            else:
-                result = response.json()
-                return result.get("response", "")
-                
-        except requests.exceptions.Timeout:
-            error_msg = "Request timed out"
-            self.logger.error(error_msg)
-            return error_msg if not stream else iter([error_msg])
-        except Exception as e:
-            error_msg = f"Error communicating with Ollama: {str(e)}"
-            self.logger.error(error_msg)
-            return error_msg if not stream else iter([error_msg])
-
-    def _stream_response(self, response: requests.Response) -> Generator[str, None, None]:
-        try:
-            for line in response.iter_lines():
-                if line:
-                    try:
-                        data = json.loads(line)
-                        if "response" in data:
-                            yield data["response"]
-                        if data.get("done", False):
-                            break
-                    except json.JSONDecodeError:
-                        continue
-        except Exception as e:
-            self.logger.error(f"Error streaming response: {e}")
-            yield f"Error: {str(e)}"
+        return self.chat(
+            messages=messages,
+            model=model,
+            temperature=temperature,
+            stream=stream
+        )
 
     def chat(
         self,

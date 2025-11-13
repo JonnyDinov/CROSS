@@ -1,5 +1,11 @@
 # Windows AI Agent
 
+> 🚀 **Быстрый старт:** Смотрите [QUICK_START.md](QUICK_START.md) для немедленного запуска!
+
+Полнофункциональный AI-ассистент для Windows с фоновым сервисом, глобальными горячими клавишами, CLI и современным GUI на PySide6. Агент интегрируется с [Ollama](https://github.com/jmorganca/ollama) для работы с LLM и предоставляет системную автоматизацию, обработку текста и анализ изображений.
+
+---
+
 A full-featured Windows AI assistant with background service, global hotkeys, CLI, and a modern PySide6-based GUI. The agent integrates with [Ollama](https://github.com/jmorganca/ollama) for LLM capabilities and provides deep system automation, text processing, and vision support.
 
 ## Features
@@ -18,7 +24,7 @@ A full-featured Windows AI assistant with background service, global hotkeys, CL
 
 - Windows 10/11
 - Python 3.10+
-- Ollama server running at `http://localhost:11434`
+- Ollama server running at `http://127.0.0.1:11434` with model `gpt-oss:120b-cloud`
 
 ## Installation
 
@@ -31,11 +37,15 @@ pip install -r requirements.txt
 ### Configure Ollama
 
 ```bash
-ollama pull llama3.2
-ollama pull llava
+ollama pull gpt-oss:120b-cloud
 ```
 
 ## Running
+
+### Run Menu (recommended on Windows)
+```
+run.bat
+```
 
 ### GUI
 ```bash
@@ -51,6 +61,11 @@ agent-cli interactive
 ### Background Service
 ```bash
 agent-service
+```
+
+### Test Connection (optional)
+```bash
+python test_connection.py
 ```
 
 ## Build Executables
