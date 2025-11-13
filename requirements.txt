@@ -1,0 +1,25 @@
+# Core Dependencies
+PySide6>=6.6.0
+keyboard>=0.13.5
+pyperclip>=1.8.2
+psutil>=5.9.6
+requests>=2.31.0
+Pillow>=10.1.0
+screeninfo>=0.8.1
+
+# CLI Tools
+rich>=13.7.0
+prompt-toolkit>=3.0.43
+click>=8.1.7
+
+# System Integration
+pywin32>=306; platform_system == "Windows"
+pystray>=0.19.5
+plyer>=2.1.0
+
+# Build Tool
+pyinstaller>=6.3.0
+
+# Utilities
+python-dotenv>=1.0.0
+pyyaml>=6.0.1
